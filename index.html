@@ -24,10 +24,12 @@
             }
         }
         /*
-        * Return a sentence based on player and computer selection.
+        * Return a string based on player and computer selection params.
         *
-        * @param playerSelection <string>
-        * @param computerSelection <string>
+        * @param <string> playerSelection 
+        * @param <string> computerSelection
+        * 
+        * @return <string> "player" or "computer" (the winner)
         */
         function playRound(playerSelection, computerSelection) {
             // "sCissOrs" -> "scissors"
@@ -36,19 +38,26 @@
 
             // Based on conditions, return a sentence
             if (playerSelection === computerSelection) {
-                return "It's a tie!";
+                console.log("It's a tie!");
+                return null;
             } else if (playerSelection === "rock" && computerSelection === "scissors") {
-                return "Player Wins! rock beats scissors";
+                console.log("Player Wins! rock beats scissors");
+                return "player";
             } else if (playerSelection === "rock" && computerSelection === "paper") {
-                return "Computer Wins! paper beats rock";
+                console.log("Computer Wins! paper beats rock");
+                return "computer";
             } else if (playerSelection === "paper" && computerSelection === "rock") {
-                return "Player Wins! paper beats rock";
+                console.log("Player Wins! paper beats rock");
+                return "player";
             } else if (playerSelection === "paper" && computerSelection === "scissors") {
-                return "Computer Wins! scissors beats paper";
+                console.log("Computer Wins! scissors beats paper");
+                return "computer";
             } else if (playerSelection === "scissors" && computerSelection === "paper") {
-                return "Player Wins! scissors beats paper";
+                console.log("Player Wins! scissors beats paper");
+                return "player";
             } else if (playerSelection === "scissors" && computerSelection === "rock") {
-                return "Computer Wins! rock beats scissors";
+                console.log("Computer Wins! rock beats scissors");
+                return "computer";
             }
         }
 
@@ -57,20 +66,43 @@
         }
 
         function game() {
-            // Todo:
-            // - 5 rounds
-            // - keep track of score
-            // - prompt the winner of each round
-            // - declare final winner after last round
+            // Declare amount of rounds
+            const rounds = 5;
 
-            let round = 1;
+            // Initialize scores
             let playerScore = 0;
             let computerScore = 0;
 
-            let answer = gamePrompt();
-            
+            // Game loop
+            for (let i = 0; i < rounds; i++) {
+                // Get selections from player and computer
+                let playerSelection = gamePrompt();
+                let computerSelection = computerPlay()
 
+                // Check who won the round
+                let roundWinner = playRound(playerSelection, computerSelection);
+                if (roundWinner === "player") {
+                    playerScore += 1; // -> playerScore = playerScore + 1;
+                } else if (roundWinner === "computer") {
+                    computerScore += 1;
+                }
+            }
+
+            // Exit loop - display who won
+            console.log(`
+                Player Score: ${playerScore}
+                Computer Score: ${computerScore}
+            `);
+            if (playerScore > computerScore) {
+                console.log("Player wins game!");
+            } else if (computerScore > playerScore) {
+                console.log("Computer wins game!");
+            } else {
+                console.log("Tie game.");
+            }
         }
+
+        game();
     </script>
 </body>
 </html>
