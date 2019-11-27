@@ -9,7 +9,7 @@
 <body>
     <script>
         /*
-        * RETURN "Rock", "Paper", or "Scissors" randomly.
+        * Return "Rock", "Paper", or "Scissors" randomly.
         */
         function computerPlay() {
             // Generate a random number between 1 and 3 (inclusive)
@@ -20,11 +20,57 @@
             } else if (rand === 2) {
                 return "paper";
             } else if (rand === 3) {
-                return "scissor";
+                return "scissors";
+            }
+        }
+        /*
+        * Return a sentence based on player and computer selection.
+        *
+        * @param playerSelection <string>
+        * @param computerSelection <string>
+        */
+        function playRound(playerSelection, computerSelection) {
+            // "sCissOrs" -> "scissors"
+            playerSelection = playerSelection.toLowerCase();
+            computerSelection = computerSelection.toLowerCase();
+
+            // Based on conditions, return a sentence
+            if (playerSelection === computerSelection) {
+                return "It's a tie!";
+            } else if (playerSelection === "rock" && computerSelection === "scissors") {
+                return "Player Wins! rock beats scissors";
+            } else if (playerSelection === "rock" && computerSelection === "paper") {
+                return "Computer Wins! paper beats rock";
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                return "Player Wins! paper beats rock";
+            } else if (playerSelection === "paper" && computerSelection === "scissors") {
+                return "Computer Wins! scissors beats paper";
+            } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                return "Player Wins! scissors beats paper";
+            } else if (playerSelection === "scissors" && computerSelection === "rock") {
+                return "Computer Wins! rock beats scissors";
             }
         }
 
-        
+        function gamePrompt() {
+            return window.prompt("Rock, Paper, or Scissors?");
+        }
+
+        function game() {
+            // Todo:
+            // - 5 rounds
+            // - keep track of score
+            // - prompt the winner of each round
+            // - declare final winner after last round
+
+            let round = 1;
+            let playerScore = 0;
+            let computerScore = 0;
+
+            let answer = gamePrompt();
+            
+
+        }
     </script>
 </body>
 </html>
